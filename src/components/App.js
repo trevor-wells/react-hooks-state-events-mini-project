@@ -5,12 +5,16 @@ import TaskList from "./TaskList";
 import { CATEGORIES , TASKS } from "../data";
 
 function App() {
+
+  function handleDeleteTask()
+
+
   return (
     <div className="App">
       <h2>My tasks</h2>
       <CategoryFilter />
       <NewTaskForm />
-      <TaskList tasksData={TASKS}/>
+      <TaskList onDeleteTask={handleDeleteTask} tasksData={TASKS}/>
     </div>
   );
 }
