@@ -1,20 +1,20 @@
 import React from "react";
 import Task from "./Task"
 
-function TaskList(props) {
+function TaskList({tasks, onDeleteTask}) {
   
-  const tasks = props.tasksData.map(taskData =>
+  const taskComps = tasks.map(task =>
   <Task
-    key={taskData.text}
-    text={taskData.text}
-    category={taskData.category}
-    onDeleteTask={props.onDeleteTask}
+    key={task.text}
+    text={task.text}
+    category={task.category}
+    onDeleteTask={onDeleteTask}
     />
   )
 
   return (
     <div className="tasks">
-      {tasks}
+      {taskComps}
     </div>
   );
 }
