@@ -1,29 +1,25 @@
-import React, {useState, useEffect} from "react";
-import CategoryFilter from "./CategoryFilter";
-import NewTaskForm from "./NewTaskForm";
-import TaskList from "./TaskList";
-import { CATEGORIES , TASKS } from "../data";
+import React, {useState, useEffect} from "react"
+import CategoryFilter from "./CategoryFilter"
+import NewTaskForm from "./NewTaskForm"
+import TaskList from "./TaskList"
+import { CATEGORIES , TASKS } from "../data"
 
-function App() {
+export default function App() {
   const [tasks, setTasks] = useState(TASKS)
   const [category, setCategory] = useState("All")
 
-  function handleDeleteTask(deletedTaskText){
-    setTasks(prevTasks => prevTasks.filter(task => task.text !== deletedTaskText))
-  }
+  const tasksToDisplay = category === "All" ? tasks : tasks.filter(task => task.category === category)
 
-  function filterList(cat){
-    setCategory(cat)
+  function createNewTask(newTask){
+    setTasks(prevTasks => ([...prevTasks, newTask]))
   }
 
   return (
     <div className="App">
       <h2>My tasks</h2>
-      <CategoryFilter categories = {CATEGORIES} onFilter={filterList}/>
-      <NewTaskForm />
-      <TaskList onDeleteTask={handleDeleteTask} tasks={tasks}/>
+      <CategoryFilter categories = {CATEGORIES} setCategory={setCategory}/>
+      <NewTaskForm categories= {CATEGORIES} onTaskFormSubmit={createNewTask}/>
+      <TaskList tasks={tasksToDisplay} setTasks={setTasks}/>
     </div>
-  );
+  )
 }
-
-export default App;

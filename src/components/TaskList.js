@@ -1,22 +1,20 @@
-import React from "react";
+import React from "react"
 import Task from "./Task"
 
-function TaskList({tasks, onDeleteTask}) {
+export default function TaskList({tasks, setTasks}) {
   
-  const taskComps = tasks.map(task =>
+  const myTaskList = tasks.map(task =>
   <Task
     key={task.text}
     text={task.text}
     category={task.category}
-    onDeleteTask={onDeleteTask}
+    setTasks={setTasks}
     />
   )
 
   return (
     <div className="tasks">
-      {taskComps}
+      {myTaskList}
     </div>
-  );
+  )
 }
-
-export default TaskList;

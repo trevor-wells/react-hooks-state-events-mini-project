@@ -1,21 +1,21 @@
-import React from "react";
+import React from "react"
 
-function CategoryFilter({categories, onFilter}) {
+export default function CategoryFilter({categories, setCategory}) {
   
-  const categoryButtons = categories.map(category => <button key={category} onClick={handleClick}>{category}</button>)
+  let categoryButtons = categories.map(category =>
+  <button key={category} id={category} onClick={handleFilter}>
+    {category}
+  </button>)
   
-  function handleClick(event){
+  function handleFilter(event){
     event.target.className = "selected"
-    console.log(event.target.className)
-    onFilter(event.target.key)
+    setCategory(event.target.id)
   }
 
   return (
     <div className="categories">
-      <h5>Category filters</h5>
+      <h5>Category Filters</h5>
       {categoryButtons}
     </div>
-  );
+  )
 }
-
-export default CategoryFilter;
