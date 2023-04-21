@@ -1,14 +1,17 @@
 import React from "react"
 
-export default function CategoryFilter({categories, setCategory}) {
+export default function CategoryFilter({categories, setCategory, selectedCategory}) {
   
   let categoryButtons = categories.map(category =>
-  <button key={category} id={category} onClick={handleFilter}>
+  <button
+    key={category}
+    id={category}
+    onClick={handleFilter}
+    className={selectedCategory === category ? "selected" : ""}>
     {category}
   </button>)
   
   function handleFilter(event){
-    event.target.className = "selected"
     setCategory(event.target.id)
   }
 

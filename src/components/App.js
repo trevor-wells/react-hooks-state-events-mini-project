@@ -17,7 +17,7 @@ export default function App() {
   return (
     <div className="App">
       <h2>My tasks</h2>
-      <CategoryFilter categories = {CATEGORIES} setCategory={setCategory}/>
+      <CategoryFilter categories = {CATEGORIES} setCategory={setCategory} selectedCategory={category}/>
       <NewTaskForm categories= {CATEGORIES} onTaskFormSubmit={createNewTask}/>
       <TaskList tasks={tasksToDisplay} setTasks={setTasks}/>
     </div>
